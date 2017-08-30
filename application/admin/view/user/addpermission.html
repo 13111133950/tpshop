@@ -1,0 +1,27 @@
+<article class="page-container">
+	<form action="/admin/user/addpermission" method="post" class="form form-horizontal" id="form-admin-role-add">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>节点名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="roleName" name="title" datatype="*4-16" nullmsg="节点名称不能为空">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>节点URL地址：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="roleName" name="name" datatype="*4-16" nullmsg="节点URL地址不能为空">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>节点类型：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="1-基础,2-高级,3-root" id="roleName" name="class" datatype="*4-16" nullmsg="节点类型不能为空">
+			</div>
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input type="submit" class="btn btn-success radius" value="确定"><i class="icon-ok"></i> 
+			</div>
+		</div>
+	</form>
+</article>

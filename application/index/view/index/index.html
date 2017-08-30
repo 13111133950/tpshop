@@ -1,0 +1,504 @@
+{extend name="common/template"/}
+{block name="title"}首页{/block}
+{block name="body"}
+<!--广告幻灯片样式-->
+   	<div id="slideBox" class="slideBox">
+			<div class="hd">
+				<ul class="smallUl"></ul>
+			</div>
+			<div class="bd">
+				<ul>
+					<li><a href="#" target="_blank"><div style="background:url(__STATIC__/AD/ad-1.jpg) no-repeat; background-position:center; width:100%; height:450px;"></div></a></li>
+					<li><a href="#" target="_blank"><div style="background:url(__STATIC__/AD/ad-2.jpg) no-repeat; background-position:center ; width:100%; height:450px;"></div></a></li>
+					<li><a href="#" target="_blank"><div style="background:url(__STATIC__/AD/ad-3.jpg) no-repeat rgb(226, 155, 197); background-position:center; width:100%; height:475px;"></div></a></li>
+                    <li><a href="#" target="_blank"><div style="background:url(__STATIC__/AD/ad-7.jpg) no-repeat #f7ddea; background-position:center; width:100%; height:450px;"></div></a></li>
+                    <li><a href="#" target="_blank"><div style="background:url(__STATIC__/AD/ad-6.jpg) no-repeat  #F60; background-position:center; width:100%; height:450px;"></div></a></li>
+				</ul>
+			</div>
+			<!-- 下面是前/后按钮-->
+			<a class="prev" href="javascript:void(0)"></a>
+			<a class="next" href="javascript:void(0)"></a>
+
+		</div>
+		<script type="text/javascript">
+		jQuery(".slideBox").slide({titCell:".hd ul",mainCell:".bd ul",autoPlay:true,autoPage:true});
+		</script>
+ </div>
+
+<!--内容样式-->
+<div id="mian">
+ <div class="clearfix marginbottom">
+ <!--产品分类样式-->
+  <div class="Menu_style" id="allSortOuterbox">
+   <div class="title_name"><em></em>所有商品分类</div>
+   <div class="content hd_allsort_out_box_new">
+    <ul class="Menu_list">
+        {foreach $cate1 as $cate}
+        <li class="name">
+		<div class="Menu_name"><a href="/index/index/lists?id={$cate.id}" >{$cate.name}</a><span>&lt;</span></div>
+		<div class="menv_Detail">
+		 <div class="cat_pannel clearfix">
+		   <div class="hd_sort_list">
+		    {foreach $cate['ccate'] as $cate2}
+		    <dl class="clearfix" data-tpc="1">
+			 <dt><a href="/index/index/lists?id={$cate2.id}">{$cate2.name}<i>></i></a></dt>
+			 <dd>
+			 {foreach $cate2['ccate'] as $cate3}
+			 <a href="/index/index/lists?id={$cate3.id}">{$cate3.name}</a>
+			 {/foreach}
+			 </dd> 
+			</dl>
+			{/foreach}
+		   </div><div class="Brands">
+		  </div>
+		  </div>
+		  <!--品牌-->		  
+		</div>			
+		</li>
+		{/foreach}
+    </ul>
+   </div>
+  </div>
+  <script>$("#allSortOuterbox").slide({ titCell:".Menu_list li",mainCell:".menv_Detail",	});</script>
+  <!--产品栏切换-->
+  <div class="product_list left">
+  		<div class="slideGroup">
+			<div class="parHd">
+				<ul><li>新品上市</li><li>超值特惠</li><li>本期团购</li><li>产品精选</li><li>抢先一步</li></ul>
+			</div>
+			<div class="parBd">
+					<div class="slideBoxs">
+						<a class="sPrev" href="javascript:void(0)"></a>
+						<ul>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_11.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_12.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_13.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_15.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+						</ul>
+						<a class="sNext" href="javascript:void(0)"></a>
+					</div><!-- slideBox End -->
+
+					<div class="slideBoxs">
+						<a class="sPrev" href="javascript:void(0)"></a>
+						<ul>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_15.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_15.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_34.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_58.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+						</ul>
+						<a class="sNext" href="javascript:void(0)"></a>
+					</div><!-- slideBox End -->
+
+					<div class="slideBoxs">
+						<a class="sPrev" href="javascript:void(0)"></a>
+						<ul>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_57.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_56.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_54.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_55.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+						</ul>
+						<a class="sNext" href="javascript:void(0)"></a>
+					</div><!-- slideBox End -->
+                    	<div class="slideBoxs">
+						<a class="sPrev" href="javascript:void(0)"></a>
+						<ul>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_50.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_51.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_52.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_53.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+						</ul>
+						<a class="sNext" href="javascript:void(0)"></a>
+					</div><!-- slideBox End -->
+                    	<div class="slideBoxs">
+						<a class="sPrev" href="javascript:void(0)"></a>
+						<ul>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_15.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_17.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_16.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+							<li>
+								<div class="pic"><a href="#" target="_blank"><img src="__STATIC__/products/p_19.jpg" /></a></div>
+								<div class="title">
+                                <a href="#" target="_blank" class="name">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a>
+                                <h3><b>￥</b>23.00</h3>
+                                </div>
+							</li>
+						</ul>
+						<a class="sNext" href="javascript:void(0)"></a>
+					</div><!-- slideBox End -->
+
+			</div><!-- parBd End -->
+		</div>
+        <script type="text/javascript">
+			/* 内层图片无缝滚动 */
+			jQuery(".slideGroup .slideBoxs").slide({ mainCell:"ul",vis:4,prevCell:".sPrev",nextCell:".sNext",effect:"leftMarquee",interTime:50,autoPlay:true,trigger:"click"});
+			/* 外层tab切换 */
+			jQuery(".slideGroup").slide({titCell:".parHd li",mainCell:".parBd"});
+		</script>
+        <!--广告样式-->
+        <div class="Ads_style"><a href="#"><img src="__STATIC__/images/AD_03.png"  width="318"/></a><a href="#"><img src="__STATIC__/images/AD_04.png" width="318"/></a><a href="#"><img src="__STATIC__/images/AD_06.png" width="318"/></a></div>
+  </div>
+ </div>
+ <!--板块栏目样式-->
+ <div class="clearfix Plate_style">
+  <div class="Plate_column Plate_column_left">
+    <div class="Plate_name">
+    <h2>产品名称</h2>
+    <div class="Sort_link"><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a></div>
+    <a href="#" class="Plate_link"> <img src="__STATIC__/images/bk_img_14.png" /></a>
+   
+    </div>
+    <div class="Plate_product">
+    <ul id="lists">
+     <li class="product_display">
+     <a href="" class="Collect"><em></em>收藏</a>
+     <a href="#" class="img_link"><img src="__STATIC__/products/p_44.jpg"  width="140" height="140"/></a>
+     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
+     <h3><b>￥</b>34.00</h3>
+    <div class="Detailed">
+	   <div class="content">
+		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
+		  </div>
+	   </div>
+     </li>
+     <li class="product_display">
+      <a href="" class="Collect"><em></em>收藏</a>
+     <a href="#" class="img_link"><img src="__STATIC__/products/p_43.jpg"  width="140" height="140"/></a>
+     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
+     <h3><b>￥</b>34.00</h3>
+      <div class="Detailed">
+	   <div class="content">
+		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
+		  </div>
+	   </div>
+     </li>
+     <li class="product_display">
+      <a href="" class="Collect"><em></em>收藏</a>
+     <a href="#" class="img_link"><img src="__STATIC__/products/p_41.jpg"  width="140" height="140"/></a>
+     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
+     <h3><b>￥</b>34.00</h3>
+       <div class="Detailed">
+	   <div class="content">
+		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
+		  </div>
+	   </div>
+     </li>
+     <li class="product_display">
+      <a href="" class="Collect"><em></em>收藏</a>
+     <a href="#" class="img_link"><img src="__STATIC__/products/p_42.jpg"  width="140" height="140"/></a>
+     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
+     <h3><b>￥</b>34.00</h3>
+     <div class="Detailed">
+	   <div class="content">
+		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
+		  </div>
+	   </div>
+     </li>
+    </ul>
+    </div>
+  </div>
+  <!--板块名称-->
+    <div class="Plate_column Plate_column_right">
+    <div class="Plate_name">
+    <h2>产品名称</h2>
+    <div class="Sort_link"><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a></div>
+    <a href="#" class="Plate_link"> <img src="__STATIC__/images/bk_img_19.png" /></a>
+   
+    </div>
+    <div class="Plate_product">
+    <ul id="lists">
+     <li class="product_display">
+     <a href="" class="Collect"><em></em>收藏</a>
+     <a href="#" class="img_link"><img src="__STATIC__/products/p_15.jpg"  width="140" height="140"/></a>
+     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
+     <h3><b>￥</b>34.00</h3>
+    <div class="Detailed">
+	   <div class="content">
+		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
+		  </div>
+	   </div>
+     </li>
+     <li class="product_display">
+      <a href="" class="Collect"><em></em>收藏</a>
+     <a href="#" class="img_link"><img src="__STATIC__/products/p_13.jpg"  width="140" height="140"/></a>
+     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
+     <h3><b>￥</b>34.00</h3>
+      <div class="Detailed">
+	   <div class="content">
+		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
+		  </div>
+	   </div>
+     </li>
+     <li class="product_display">
+      <a href="" class="Collect"><em></em>收藏</a>
+     <a href="#" class="img_link"><img src="__STATIC__/products/p_12.jpg"  width="140" height="140"/></a>
+     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
+     <h3><b>￥</b>34.00</h3>
+       <div class="Detailed">
+	   <div class="content">
+		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
+		  </div>
+	   </div>
+     </li>
+     <li class="product_display">
+      <a href="" class="Collect"><em></em>收藏</a>
+     <a href="#" class="img_link"><img src="__STATIC__/products/p_11.jpg"  width="140" height="140"/></a>
+     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
+     <h3><b>￥</b>34.00</h3>
+     <div class="Detailed">
+	   <div class="content">
+		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
+		  </div>
+	   </div>
+     </li>
+    </ul>
+    </div>
+  </div>
+   <div class="Plate_column Plate_column_left">
+    <div class="Plate_name">
+    <h2>产品名称</h2>
+    <div class="Sort_link"><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a></div>
+    <a href="#" class="Plate_link"> <img src="__STATIC__/images/bk_img_22.png" /></a>
+   
+    </div>
+    <div class="Plate_product">
+    <ul id="lists">
+     <li class="product_display">
+     <a href="" class="Collect"><em></em>收藏</a>
+     <a href="#" class="img_link"><img src="__STATIC__/products/p_21.jpg"  width="140" height="140"/></a>
+     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
+     <h3><b>￥</b>34.00</h3>
+    <div class="Detailed">
+	   <div class="content">
+		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
+		  </div>
+	   </div>
+     </li>
+     <li class="product_display">
+      <a href="" class="Collect"><em></em>收藏</a>
+     <a href="#" class="img_link"><img src="__STATIC__/products/p_25.jpg"  width="140" height="140"/></a>
+     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
+     <h3><b>￥</b>34.00</h3>
+      <div class="Detailed">
+	   <div class="content">
+		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
+		  </div>
+	   </div>
+     </li>
+     <li class="product_display">
+      <a href="" class="Collect"><em></em>收藏</a>
+     <a href="#" class="img_link"><img src="__STATIC__/products/p_22.jpg"  width="140" height="140"/></a>
+     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
+     <h3><b>￥</b>34.00</h3>
+       <div class="Detailed">
+	   <div class="content">
+		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
+		  </div>
+	   </div>
+     </li>
+     <li class="product_display">
+      <a href="" class="Collect"><em></em>收藏</a>
+     <a href="#" class="img_link"><img src="__STATIC__/products/p_24.jpg"  width="140" height="140"/></a>
+     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
+     <h3><b>￥</b>34.00</h3>
+     <div class="Detailed">
+	   <div class="content">
+		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
+		  </div>
+	   </div>
+     </li>
+    </ul>
+    </div>
+  </div>
+  <!--板块名称-->
+    <div class="Plate_column Plate_column_right">
+    <div class="Plate_name">
+    <h2>产品名称</h2>
+    <div class="Sort_link"><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a><a href="#" class="name">分类名称</a></div>
+    <a href="#" class="Plate_link"> <img src="__STATIC__/images/bk_img_14.png" /></a>
+   
+    </div>
+    <div class="Plate_product">
+    <ul id="lists">
+     <li class="product_display">
+     <a href="" class="Collect"><em></em>收藏</a>
+     <a href="#" class="img_link"><img src="__STATIC__/products/p_31.jpg"  width="140" height="140"/></a>
+     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
+     <h3><b>￥</b>34.00</h3>
+    <div class="Detailed">
+	   <div class="content">
+		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
+		  </div>
+	   </div>
+     </li>
+     <li class="product_display">
+      <a href="" class="Collect"><em></em>收藏</a>
+     <a href="#" class="img_link"><img src="__STATIC__/products/p_32.jpg"  width="140" height="140"/></a>
+     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
+     <h3><b>￥</b>34.00</h3>
+      <div class="Detailed">
+	   <div class="content">
+		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
+		  </div>
+	   </div>
+     </li>
+     <li class="product_display">
+      <a href="" class="Collect"><em></em>收藏</a>
+     <a href="#" class="img_link"><img src="__STATIC__/products/p_33.jpg"  width="140" height="140"/></a>
+     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
+     <h3><b>￥</b>34.00</h3>
+       <div class="Detailed">
+	   <div class="content">
+		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
+		  </div>
+	   </div>
+     </li>
+     <li class="product_display">
+      <a href="" class="Collect"><em></em>收藏</a>
+     <a href="#" class="img_link"><img src="__STATIC__/products/p_37.jpg"  width="140" height="140"/></a>
+     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒 科罗娜啤酒</a>
+     <h3><b>￥</b>34.00</h3>
+     <div class="Detailed">
+	   <div class="content">
+		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
+		  </div>
+	   </div>
+     </li>
+    </ul>
+    </div>
+  </div>
+ </div>
+ <!--友情链接-->
+ <div class="link_style clearfix">
+ <div class="title">友情链接</div>
+ <div class="link_name">
+  <a href="#"><img src="__STATIC__/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="__STATIC__/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="__STATIC__/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="__STATIC__/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="__STATIC__/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="__STATIC__/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="__STATIC__/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="__STATIC__/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="__STATIC__/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="__STATIC__/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="__STATIC__/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="__STATIC__/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="__STATIC__/products/logo/34.jpg"  width="100"/></a>
+ </div>
+ </div>
+</div>
+{/block}
