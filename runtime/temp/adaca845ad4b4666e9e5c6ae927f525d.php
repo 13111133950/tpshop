@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"F:\Demo\tpshop\public/../application/index\view\index\lists.html";i:1505272354;s:68:"F:\Demo\tpshop\public/../application/index\view\common\template.html";i:1505272163;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:71:"F:\Demo\tpshop\public/../application/index\view\index\searchresult.html";i:1505205169;s:68:"F:\Demo\tpshop\public/../application/index\view\common\template.html";i:1505198600;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -12,8 +12,9 @@
 <script src="__STATIC__/js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
 <script src="__STATIC__/js/common_js.js" type="text/javascript"></script>
 <script src="__STATIC__/js/footer.js" type="text/javascript"></script>
+<script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
 
-<title>商品列表</title>
+<title>搜索结果</title>
 </head>
 
 <body>
@@ -24,7 +25,7 @@
     <div class="Collection">欢迎你,<?php echo \think\Session::get('user.username'); ?> <a href="/index/user/loginout" class="green">注销</a></div>
     <div class="hd_top_manu clearfix">
 	  <ul class="clearfix">
-	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="/">首页</a></li> 
+	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">首页</a></li> 
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">我的小充</a> </li>
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">消息中心</a></li>
        <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">商品分类</a></li>
@@ -80,7 +81,7 @@
 <!--菜单栏-->
 	<div class="Navigation" id="Navigation">
 		 <ul class="Navigation_name">
-			<li><a href="/">首页</a></li>
+			<li><a href="Home.html">首页</a></li>
             <li class="hour"><span class="bg_muen"></span><a href="#">半小时生活圈</a></li>
 			<li><a href="#">你身边的超市</a></li>
 			<li><a href="#">预售专区</a><em class="hot_icon"></em></li>
@@ -181,17 +182,17 @@
             </div>
         </div>
     </div>
-    <!--产品列表样式-->
+    <!--产品列表样式-->    
     <div id="Sorted" class="">
         <div class="Sorted">
             <div class="Sorted_style"> 
-	            <a href="#" >综合<i class="iconfont icon-fold"></i></a>  
+	            <a href="#" class="on">综合<i class="iconfont icon-fold"></i></a>  
 	            <?php if((isset($order))): ?>
-	            <a href="/index/index/lists/id/<?php echo $id; ?>/order/<?php echo $order; ?>" class="on">价格<i class="iconfont icon-fold"></i></a>
+	            <a href="/index/index/searchresult/info/<?php echo $info; ?>/order/<?php echo $order; ?>">价格<i class="iconfont icon-fold"></i></a>
 	            <?php else: ?>
-	            <a href="/index/index/lists/id/<?php echo $id; ?>/order/asc">价格<i class="iconfont icon-fold"></i></a>
+	            <a href="/index/index/searchresult/info/<?php echo $info; ?>/order/asc">价格<i class="iconfont icon-fold"></i></a>
 	            <?php endif; ?>
-	            <a href="/index/index/lists/id/<?php echo $id; ?>/sales/desc">销量<i class="iconfont icon-fold"></i></a> 
+	            <a href="/index/index/searchresult/info/<?php echo $info; ?>/sales/desc">销量<i class="iconfont icon-fold"></i></a> 
             </div>
             <!--产品搜索-->
             <div class="products_search">
@@ -229,7 +230,50 @@
         </div>
     </div>
 </div>
-
+<script type="text/javascript">
+/* var order='desc';
+function priceorder(){
+	if(order=='asc'){
+		order='desc';
+		window.location.href='/index/index/searchresult/order/asc';
+	}else(order='desc'){
+		order='asc';
+		window.location.href='/index/index/searchresult/order/desc';
+	}
+	
+} */
+/* function priceorder(obj){
+	window.location.href='/index/index/searchresult/order/asc';
+	obj.onclick=priceorder2();
+}
+function priceorder2(obj1){
+	window.location.href='/index/index/searchresult/order/desc';
+	obj1.onclick=priceorder1();
+} */
+/* var flag=false;
+function priceorder(){
+    if(flag){
+    	window.location.href='/index/index/searchresult/order/asc';
+    }else{
+    	window.location.href='/index/index/searchresult/order/desc';
+    }
+    flag=!flag;
+} */
+function priceorder(){
+	$(document).ready(function(){
+		$("#price").toggle(
+		function(){
+		//第一个函数
+			window.location.href='/index/index/searchresult/order/asc';
+		},
+		function(){
+		//第二个函数
+			window.location.href='/index/index/searchresult/order/desc';
+		},
+		);
+		});
+}
+</script>
 
 <script type="text/javascript" charset="UTF-8">
 <!--
@@ -257,6 +301,7 @@
  }
  //点击效果end  
 //-->
+
 </script>
 
 <!--网站地图-->

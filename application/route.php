@@ -1,4 +1,5 @@
 <?php
+use think\Route;  //导入Route类
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK ]
 // +----------------------------------------------------------------------
@@ -17,5 +18,8 @@ return [
         ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
         ':name' => ['index/hello', ['method' => 'post']],
     ],
-
+    //'new/:id/[:name]'=>'index/index/cart',
+    //'demo/'=>'index/index/demo'
 ];
+
+

@@ -1,7 +1,6 @@
 <?php
 namespace app\index\controller;
 use think\Controller;
-use think\Request;
 class Index extends Controller
 {
     public function index()
@@ -29,39 +28,69 @@ class Index extends Controller
         $this->assign('pro',$pro);
         return $this->fetch();
     }
-    public  function lists(Request $request) {
-        $id=$request->get('id');
-        $cate=Db('cate')->where('id',$id)->find();
-        $level=$cate['level'];
+    public  function lists($id,$order=null,$sales=null) {
+        $le=Db('cate')->where('id',$id)->find();
+        $level=$le['level'];
+        if(!$order&&!$sales){
+            $pro=Db('pro');
+        }elseif($sales){
+            $pro=Db('pro')->order('num '.$sales);
+        }elseif($order=='desc'){
+            $pro=Db('pro')->order('price '.$order);
+            $this->assign('order','asc');
+        }else{
+            $pro=Db('pro')->order('price '.$order);
+            $this->assign('order','desc');
+        }
         if($level==3){
-            $data=Db('pro')->where('cid',$id)->select();
+            $data=$pro->where('cid',$id)->select();
         }elseif($level==2){
-            $data=Db('pro')->where('cid',$id)->select();
-            $cate=Db('cate')->where('pid',$id)->select();
-            foreach ($cate as $v){
-                $arr=Db('pro')->where('cid',$v['id'])->select();
-                $data=array_merge($data,$arr); 
-            }
+            $cate=Db('cate')->where('pid',$id)->field('id')->select();
+            $ids = array_column($cate, 'id');  //二维数组变一维
+            $ids[]=(int)$id;
+            $data=$pro->where('cid','in',$ids)->select();
         }elseif($level==1){
-            $data=Db('pro')->where('cid',$id)->select();
-            $cate1=Db('cate')->where('pid',$id)->select();
-            foreach($cate1 as $v1){
-                $data1=Db('pro')->where('cid',$v1['id'])->select();
-                $cate=Db('cate')->where('pid',$v1['id'])->select();
-                foreach ($cate as $v){
-                    $arr=Db('pro')->where('cid',$v['id'])->select();
-                    $data1=array_merge($data1,$arr);
-                }
-                $data=array_merge($data,$data1);
-                
-            }
-            
+            $cate=Db('cate')->where('pid',$id)->field('id')->select();
+            $ids = array_column($cate, 'id');
+            $cate2=Db('cate')->where('pid','in',$ids)->field('id')->select();
+            $ids2=array_column($cate2, 'id');
+            $ids=array_merge($ids,$ids2);
+            $ids[]=(int)$id;
+            $data=$pro->where('cid','in',$ids)->select();
         }
         $this->assign('data',$data);
+        $this->assign('id',$id);
+        return $this->fetch();
+        
+    }
+    public  function cart($id,$name) {
+        return $id."+".$name;
+    }
+    public  function searchresult($info="手机",$order=null,$sales=null) {
+        if(!$order&&!$sales){
+            $data=Db('pro')->where('pname','like','%'.$info.'%')->select(); 
+            $this->assign('data',$data);
+        }elseif($sales){
+            $data=Db('pro')->where('pname','like','%'.$info.'%')->order('num '.$sales)->select(); //注意 price后面的空格
+            $this->assign('data',$data);
+        }elseif($order=='desc'){
+            $data=Db('pro')->where('pname','like','%'.$info.'%')->order('price '.$order)->select(); //注意 price后面的空格
+            $this->assign('data',$data);
+            $this->assign('order','asc');
+        }else{
+            $data=Db('pro')->where('pname','like','%'.$info.'%')->order('price '.$order)->select(); //注意 price后面的空格
+            $this->assign('data',$data);
+            $this->assign('order','desc');
+        }
+        $this->assign('info',$info);
         return $this->fetch();
     }
-    public  function cart() {
-        return $this->fetch();
+    public  function test($info="手机") {
+        
+        $data=Db('pro')->where('pname','like','%'.$info.'%'); 
+        var_dump($data);
+        $arr=$data->order('price desc')->select();
+        var_dump($arr);
+        
     }
-
 }

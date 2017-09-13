@@ -22,9 +22,9 @@ class Cate extends Common
             }
         }
     }
-    public function addcate(Request $request)
+    public function addcate()
     {
-        if ($request->isPost()) {
+        if (request()->isPost()) {
             $cate=$_POST;
             if($cate['name']&&$cate['pid']!=0){
                 $pcate=Db::table('cate')->where('id',$cate['pid'])->find(); //find()返回一维数组 select返回二维数组

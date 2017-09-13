@@ -6,6 +6,7 @@ use think\Model;
 
 class Pro extends Model
 {
+    protected $table = 'pro';
     public function getAttributesAttr($val)
         {
             $attributes = [1=>'推荐',2=>'新品',3=>'热卖',4=>'促销',5=>'包邮',6=>'限时',7=>'不参与会员折扣'];

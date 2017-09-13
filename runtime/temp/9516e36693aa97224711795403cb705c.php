@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"F:\Demo\tpshop\public/../application/index\view\index\index.html";i:1501227579;s:68:"F:\Demo\tpshop\public/../application/index\view\common\template.html";i:1501221757;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"F:\Demo\tpshop\public/../application/index\view\index\index.html";i:1505205850;s:68:"F:\Demo\tpshop\public/../application/index\view\common\template.html";i:1505272163;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -19,17 +19,24 @@
 <body>
  <div id="header_top">
   <div id="top">
-    <div class="Inside_pages">
-      <div class="Collection"><a href="#" class="green">请登录</a> <a href="#" class="green">免费注册</a></div>
-	<div class="hd_top_manu clearfix">
+  	<div class="Inside_pages">
+    <?php if((session('user'))): ?>
+    <div class="Collection">欢迎你,<?php echo \think\Session::get('user.username'); ?> <a href="/index/user/loginout" class="green">注销</a></div>
+    <div class="hd_top_manu clearfix">
 	  <ul class="clearfix">
-	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">首页</a></li> 
+	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="/">首页</a></li> 
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">我的小充</a> </li>
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">消息中心</a></li>
        <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">商品分类</a></li>
         <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的购物车<b>(23)</b></a></li>	
 	  </ul>
 	</div>
+    <?php else: ?>
+    
+      <div class="Collection"><a href="/index/user/login" class="green">请登录</a> <a href="/index/user/reg" class="green">免费注册</a></div>
+	
+    
+    <?php endif; ?>
     </div>
   </div>
   <div id="header"  class="header page_style">
@@ -43,8 +50,8 @@
             </ul>
         </div>
         <div class="clear search_cur">
-           <input name="searchName" id="searchName" class="search_box" onkeydown="keyDownSearch()" type="text">
-           <input name="" type="submit" value="搜 索"  class="Search_btn"/>
+           <input name="searchName" id="searchInfo" class="search_box" onkeypress="search()" type="text">
+           <input name="" type="submit" value="搜 索"  onclick="search2()" class="Search_btn"/>
         </div>
         <div class="clear hotword">热门搜索词：香醋&nbsp;&nbsp;&nbsp;茶叶&nbsp;&nbsp;&nbsp;草莓&nbsp;&nbsp;&nbsp;葡萄&nbsp;&nbsp;&nbsp;菜油</div>
 </div>
@@ -73,7 +80,7 @@
 <!--菜单栏-->
 	<div class="Navigation" id="Navigation">
 		 <ul class="Navigation_name">
-			<li><a href="Home.html">首页</a></li>
+			<li><a href="/">首页</a></li>
             <li class="hour"><span class="bg_muen"></span><a href="#">半小时生活圈</a></li>
 			<li><a href="#">你身边的超市</a></li>
 			<li><a href="#">预售专区</a><em class="hot_icon"></em></li>
@@ -164,16 +171,16 @@
     <ul class="Menu_list">
         <?php foreach($cate1 as $cate): ?>
         <li class="name">
-		<div class="Menu_name"><a href="/index/index/lists?id=<?php echo $cate['id']; ?>" ><?php echo $cate['name']; ?></a><span>&lt;</span></div>
+		<div class="Menu_name"><a href="/index/index/lists/id/<?php echo $cate['id']; ?>" ><?php echo $cate['name']; ?></a><span>&lt;</span></div>
 		<div class="menv_Detail">
 		 <div class="cat_pannel clearfix">
 		   <div class="hd_sort_list">
 		    <?php foreach($cate['ccate'] as $cate2): ?>
 		    <dl class="clearfix" data-tpc="1">
-			 <dt><a href="/index/index/lists?id=<?php echo $cate2['id']; ?>"><?php echo $cate2['name']; ?><i>></i></a></dt>
+			 <dt><a href="/index/index/lists/id/<?php echo $cate2['id']; ?>"><?php echo $cate2['name']; ?><i>></i></a></dt>
 			 <dd>
 			 <?php foreach($cate2['ccate'] as $cate3): ?>
-			 <a href="/index/index/lists?id=<?php echo $cate3['id']; ?>"><?php echo $cate3['name']; ?></a>
+			 <a href="/index/index/lists/id/<?php echo $cate3['id']; ?>"><?php echo $cate3['name']; ?></a>
 			 <?php endforeach; ?>
 			 </dd> 
 			</dl>
@@ -707,7 +714,18 @@
     </div>
 </div>
  <!--右侧菜单栏购物车样式-->
-
+<script type="text/javascript">
+function search(){
+	if(event.keyCode==13){
+		var info=document.getElementById("searchInfo").value;
+		window.location.href='/index/index/searchresult/info/'+info;
+	}
+}
+function search2(){
+	var info=document.getElementById("searchInfo").value;
+	window.location.href='/index/index/searchresult/info/'+info;
+}
+</script>
 </body>
 </html>
     

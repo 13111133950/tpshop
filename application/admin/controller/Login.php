@@ -26,4 +26,5 @@ class Login extends Controller
         session('admin',null);
         $this->success('成功退出登陆，即将跳转到主页','/admin/index/index');
     }
+    
 }

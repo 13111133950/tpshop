@@ -35,16 +35,16 @@
     <ul class="Menu_list">
         {foreach $cate1 as $cate}
         <li class="name">
-		<div class="Menu_name"><a href="/index/index/lists?id={$cate.id}" >{$cate.name}</a><span>&lt;</span></div>
+		<div class="Menu_name"><a href="/index/index/lists/id/{$cate.id}" >{$cate.name}</a><span>&lt;</span></div>
 		<div class="menv_Detail">
 		 <div class="cat_pannel clearfix">
 		   <div class="hd_sort_list">
 		    {foreach $cate['ccate'] as $cate2}
 		    <dl class="clearfix" data-tpc="1">
-			 <dt><a href="/index/index/lists?id={$cate2.id}">{$cate2.name}<i>></i></a></dt>
+			 <dt><a href="/index/index/lists/id/{$cate2.id}">{$cate2.name}<i>></i></a></dt>
 			 <dd>
 			 {foreach $cate2['ccate'] as $cate3}
-			 <a href="/index/index/lists?id={$cate3.id}">{$cate3.name}</a>
+			 <a href="/index/index/lists/id/{$cate3.id}">{$cate3.name}</a>
 			 {/foreach}
 			 </dd> 
 			</dl>

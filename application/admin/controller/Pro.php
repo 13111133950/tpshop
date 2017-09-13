@@ -4,6 +4,7 @@ namespace app\admin\controller;
 
 use think\Db;
 use think\Request;
+use think\Model;
 
 class Pro extends Common
 {
@@ -95,27 +96,5 @@ class Pro extends Common
         var_dump($_FILES);
         
     }
-    public function show(){
-        $id=$_GET['id'];
-        $pro=Db::table('cate')->alias('c')->join('pro p','p.cid = c.id')->where('cid',$id)->select();
-        /* if(!$pro){
-            $str="没有你想要查看的结果";
-            echo json_encode($str);
-        }else{
-            echo json_encode($pro);
-        } */
-        
-        $this->assign('pro',$pro);
-        $this->view->engine->layout(false);
-        return $this->fetch('listpro');
-        /* if($data){
-            $str="分类下面还子分类,不允许删除";
-            echo json_encode($str);
-        }else{
-            $re=Db::table('cate')->where('id',$id)->delete();
-            if($re){
-                echo 1;
-            }
-        } */
-    }
+
 }
