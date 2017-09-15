@@ -1,6 +1,9 @@
-{extend name="common/template"/}
-{block name="title"}购物车{/block}
-{block name="link"}
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:63:"F:\Demo\tpshop\public/../application/index\view\index\cart.html";i:1505457429;s:68:"F:\Demo\tpshop\public/../application/index\view\common\template.html";i:1505272163;}*/ ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
 <link href="__STATIC__/css/common.css" rel="stylesheet" type="text/css" />
 <link href="__STATIC__/css/style.css" rel="stylesheet" type="text/css" />
 <script src="__STATIC__/js/jquery-1.8.3.min.js" type="text/javascript"></script>
@@ -12,8 +15,131 @@
 <link rel="stylesheet" type="text/css" href="__STATIC__/css/base2.css"/>
 <link rel="stylesheet" type="text/css" href="__STATIC__/css/checkOut.css" />
 <script type="text/javascript" src="__STATIC__/js/jquery_cart.js"></script>  
-{/block}
-{block name="body"} 
+
+<title>购物车</title>
+</head>
+
+<body>
+ <div id="header_top">
+  <div id="top">
+  	<div class="Inside_pages">
+    <?php if((session('user'))): ?>
+    <div class="Collection">欢迎你,<?php echo \think\Session::get('user.username'); ?> <a href="/index/user/loginout" class="green">注销</a></div>
+    <div class="hd_top_manu clearfix">
+	  <ul class="clearfix">
+	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="/">首页</a></li> 
+	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">我的小充</a> </li>
+	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">消息中心</a></li>
+       <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">商品分类</a></li>
+        <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的购物车<b>(23)</b></a></li>	
+	  </ul>
+	</div>
+    <?php else: ?>
+    
+      <div class="Collection"><a href="/index/user/login" class="green">请登录</a> <a href="/index/user/reg" class="green">免费注册</a></div>
+	
+    
+    <?php endif; ?>
+    </div>
+  </div>
+  <div id="header"  class="header page_style">
+  <div class="logo"><a href="index.html"><img src="__STATIC__/images/logo.png" /></a></div>
+  <!--结束图层-->
+  <div class="Search">
+        <div class="search_list">
+            <ul>
+                <li class="current"><a href="#">产品</a></li>
+                <li><a href="#">信息</a></li>
+            </ul>
+        </div>
+        <div class="clear search_cur">
+           <input name="searchName" id="searchInfo" class="search_box" onkeypress="search()" type="text">
+           <input name="" type="submit" value="搜 索"  onclick="search2()" class="Search_btn"/>
+        </div>
+        <div class="clear hotword">热门搜索词：香醋&nbsp;&nbsp;&nbsp;茶叶&nbsp;&nbsp;&nbsp;草莓&nbsp;&nbsp;&nbsp;葡萄&nbsp;&nbsp;&nbsp;菜油</div>
+</div>
+ <!--购物车样式-->
+ <div class="hd_Shopping_list" id="Shopping_list">
+   <div class="s_cart"><a href="#">我的购物车</a> <i class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">0</i></div>
+   <div class="dorpdown-layer">
+    <div class="spacer"></div>
+	 <!--<div class="prompt"></div><div class="nogoods"><b></b>购物车中还没有商品，赶紧选购吧！</div>-->
+	 <ul class="p_s_list">	   
+		<li>
+		    <div class="img"><img src="__STATIC__/images/tianma.png"></div>
+		    <div class="content"><p class="name"><a href="#">产品名称</a></p><p>颜色分类:紫花8255尺码:XL</p></div>
+			<div class="Operations">
+			<p class="Price">￥55.00</p>
+			<p><a href="#">删除</a></p></div>
+		  </li>
+		</ul>		
+	 <div class="Shopping_style">
+	 <div class="p-total">共<b>1</b>件商品　共计<strong>￥ 515.00</strong></div>
+	  <a href="Shop_cart.html" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
+	 </div>	 
+   </div>
+ </div>
+</div>
+<!--菜单栏-->
+	<div class="Navigation" id="Navigation">
+		 <ul class="Navigation_name">
+			<li><a href="/">首页</a></li>
+            <li class="hour"><span class="bg_muen"></span><a href="#">半小时生活圈</a></li>
+			<li><a href="#">你身边的超市</a></li>
+			<li><a href="#">预售专区</a><em class="hot_icon"></em></li>
+			<li><a href="products_list.html">商城</a></li>
+			
+			<li><a href="#">好评商户</a></li>
+			<li><a href="#">热销活动</a></li>
+			<li><a href="Brands.html">联系我们</a></li>
+		 </ul>			 
+		</div>
+	<script>$("#Navigation").slide({titCell:".Navigation_name li",trigger:"click"});</script>
+    </div>
+<div class="fixedBox">
+  <ul class="fixedBoxList">
+      <li class="fixeBoxLi user"><a href="#"> <span class="fixeBoxSpan"></span> <strong>消息中心</strong></a> </li>
+    <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
+		<p class="good_cart">9</p>
+			<span class="fixeBoxSpan"></span> <strong>购物车</strong>
+			<div class="cartBox">
+       		<div class="bjfff"></div><div class="message">购物车内暂无商品，赶紧选购吧</div>    </div></li>
+    <li class="fixeBoxLi Service "> <span class="fixeBoxSpan"></span> <strong>客服</strong>
+      <div class="ServiceBox">
+        <div class="bjfffs"></div>
+        <dl onclick="javascript:;">
+		    <dt><img src="__STATIC__/images/Service1.png"></dt>
+		       <dd><strong>QQ客服1</strong>
+		          <p class="p1">9:00-22:00</p>
+		           <p class="p2"><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456&amp;site=DGG三端同步&amp;menu=yes">点击交谈</a></p>
+		          </dd>
+		        </dl>
+				<dl onclick="javascript:;">
+		          <dt><img src="__STATIC__/images/Service1.png"></dt>
+		          <dd> <strong>QQ客服1</strong>
+		            <p class="p1">9:00-22:00</p>
+		            <p class="p2"><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456&amp;site=DGG三端同步&amp;menu=yes">点击交谈</a></p>
+		          </dd>
+		        </dl>
+	          </div>
+     </li>
+	 <li class="fixeBoxLi code cart_bd " style="display:block;" id="cartboxs">
+			<span class="fixeBoxSpan"></span> <strong>微信</strong>
+			<div class="cartBox">
+       		<div class="bjfff"></div>
+			<div class="QR_code">
+			 <p><img src="__STATIC__/images/erweim.jpg" width="180px" height="180px" /></p>
+			 <p>微信扫一扫，关注我们</p>
+			</div>		
+			</div>
+			</li>
+
+    <li class="fixeBoxLi Home"> <a href="./"> <span class="fixeBoxSpan"></span> <strong>收藏夹</strong> </a> </li>
+    <li class="fixeBoxLi BackToTop"> <span class="fixeBoxSpan"></span> <strong>返回顶部</strong> </li>
+  </ul>
+</div>
+
+     
     
     
  <!--收货地址body部分开始-->  
@@ -258,25 +384,25 @@
                                 <span class="col col-3">数量</span>
                                 <span class="col col-4">小计（元）</span>
                             </dt>
-                           {foreach $cart as $carts}
+                           <?php foreach($cart as $carts): ?>
                            <dd class="item clearfix">
                                 <div class="item-row">
                                     <div class="col col-1">
                                         <div class="g-pic">
-                                            <img src="__STATIC__/image/{$carts.imgpath}" width="40" height="40" />
+                                            <img src="__STATIC__/image/<?php echo $carts['imgpath']; ?>" width="40" height="40" />
                                         </div>
                                         <div class="g-info">
-                                           <a href="#">{$carts.pname}</a>
+                                           <a href="#"><?php echo $carts['pname']; ?></a>
                                                                                                                                 </div>
                                     </div>
                 
-                                    <div class="col col-2">{$carts.price}</div>
-                                    <div class="col col-3"><input type="number" id="num" value="{$carts.num}" min="1" max="100" onchange="editnum({$carts.id})"></div>
-                                    <div class="col col-4">{$carts.num*$carts.price}元</div>
-                                    <div class="col col-5"><a href="javascript:delpro({$carts.id})"><img src="__STATIC__/images/close2.png"></img></a></div>
+                                    <div class="col col-2"><?php echo $carts['price']; ?></div>
+                                    <div class="col col-3"><input type="number" id="num" value="<?php echo $carts['num']; ?>" min="1" max="100" onchange="editnum(<?php echo $carts['id']; ?>)"></div>
+                                    <div class="col col-4"><?php echo $carts['num']*$carts['price']; ?>元</div>
+                                    <div class="col col-5"><a href="javascript:delpro(<?php echo $carts['id']; ?>)"><img src="__STATIC__/images/close2.png"></img></a></div>
                                 </div>
                             </dd>
-                           {/foreach}                             
+                           <?php endforeach; ?>                             
                                                         
                                                     </dl>
                         <div class="checkout-count clearfix">
@@ -290,7 +416,7 @@
                                 <ul>
 
                                     <li>
-                                       订单总额：<span>{$price}</span>
+                                       订单总额：<span><?php echo $price; ?></span>
                                     </li>
                                     <li>
                                         活动优惠：<span>-0元</span>
@@ -302,7 +428,7 @@
                                         运费：<span id="postageDesc">0元</span>
                                     </li>
                                 </ul>
-                                <p class="checkout-total">应付总额：<span><strong>{$price}</strong>元</span></p>
+                                <p class="checkout-total">应付总额：<span><strong><?php echo $price; ?></strong>元</span></p>
                             </div>
                             <!--  -->
                         </div>
@@ -451,4 +577,95 @@ function delpro(id){
 <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 <script src="__STATIC__/js/unslider.min.js" type="text/javascript"></script>
 <script src="__STATIC__/js/index.js" type="text/javascript"></script>
-{/block}
+
+<!--网站地图-->
+<div class="fri-link-bg clearfix">
+    <div class="fri-link">
+        <div class="logo left margin-r20"><img src="__STATIC__/images/fo-logo.jpg" width="152" height="81" /></div>
+        <div class="left"><img src="__STATIC__/images/qd.jpg" width="90"  height="90" />
+            <p>扫描下载APP</p>
+        </div>
+       <div class="">
+    <dl>
+	 <dt>新手上路</dt>
+	 <dd><a href="#">售后流程</a></dd>
+     <dd><a href="#">购物流程</a></dd>
+     <dd><a href="#">订购方式</a> </dd>
+     <dd><a href="#">隐私声明 </a></dd>
+     <dd><a href="#">推荐分享说明 </a></dd>
+	</dl>
+	<dl>
+	 <dt>配送与支付</dt>
+	 <dd><a href="#">保险需求测试</a></dd>
+     <dd><a href="#">专题及活动</a></dd>
+     <dd><a href="#">挑选保险产品</a> </dd>
+     <dd><a href="#">常见问题 </a></dd>
+	</dl>
+	<dl>
+	 <dt>售后保障</dt>
+	 <dd><a href="#">保险需求测试</a></dd>
+     <dd><a href="#">专题及活动</a></dd>
+     <dd><a href="#">挑选保险产品</a> </dd>
+     <dd><a href="#">常见问题 </a></dd>
+	</dl>
+	<dl>
+	 <dt>支付方式</dt>
+	 <dd><a href="#">保险需求测试</a></dd>
+     <dd><a href="#">专题及活动</a></dd>
+     <dd><a href="#">挑选保险产品</a> </dd>
+     <dd><a href="#">常见问题 </a></dd>
+	</dl>	
+    <dl>
+	 <dt>帮助中心</dt>
+	 <dd><a href="#">保险需求测试</a></dd>
+     <dd><a href="#">专题及活动</a></dd>
+     <dd><a href="#">挑选保险产品</a> </dd>
+     <dd><a href="#">常见问题 </a></dd>
+	</dl>
+     <dl>
+	 <dt>帮助中心</dt>
+	 <dd><a href="#">保险需求测试</a></dd>
+     <dd><a href="#">专题及活动</a></dd>
+     <dd><a href="#">挑选保险产品</a> </dd>
+     <dd><a href="#">常见问题 </a></dd>
+	</dl>
+     <dl>
+	 <dt>帮助中心</dt>
+	 <dd><a href="#">保险需求测试</a></dd>
+     <dd><a href="#">专题及活动</a></dd>
+     <dd><a href="#">挑选保险产品</a> </dd>
+     <dd><a href="#">常见问题 </a></dd>
+	</dl>	   
+   </div>
+    </div>
+</div>
+<!--网站地图END-->
+<!--网站页脚-->
+<div class="copyright">
+    <div class="copyright-bg">
+        <div class="hotline">为生活充电在线 <span>招商热线：****-********</span> 客服热线：400-******</div>
+        <div class="hotline co-ph">
+            <p>版权所有Copyright ©***************</p>
+            <p>*ICP备***************号 不良信息举报</p>
+            <p>总机电话：****-*********/194/195/196 客服电话：4000****** 传 真：********
+                
+                <a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
+        </div>
+    </div>
+</div>
+ <!--右侧菜单栏购物车样式-->
+<script type="text/javascript">
+function search(){
+	if(event.keyCode==13){
+		var info=document.getElementById("searchInfo").value;
+		window.location.href='/index/index/searchresult/info/'+info;
+	}
+}
+function search2(){
+	var info=document.getElementById("searchInfo").value;
+	window.location.href='/index/index/searchresult/info/'+info;
+}
+</script>
+</body>
+</html>
+    

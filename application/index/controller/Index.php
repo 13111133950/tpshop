@@ -1,6 +1,8 @@
 <?php
 namespace app\index\controller;
 use think\Controller;
+use think\Cart;
+
 class Index extends Controller
 {
     public function index()
@@ -63,9 +65,6 @@ class Index extends Controller
         return $this->fetch();
         
     }
-    public  function cart($id,$name) {
-        return $id."+".$name;
-    }
     public  function searchresult($info="手机",$order=null,$sales=null) {
         if(!$order&&!$sales){
             $data=Db('pro')->where('pname','like','%'.$info.'%')->select(); 
@@ -85,12 +84,38 @@ class Index extends Controller
         $this->assign('info',$info);
         return $this->fetch();
     }
-    public  function test($info="手机") {
+    
+    public  function cart($act=null,$id=null,$num=null) {
+        $cart=new Cart();
         
-        $data=Db('pro')->where('pname','like','%'.$info.'%'); 
-        var_dump($data);
-        $arr=$data->order('price desc')->select();
-        var_dump($arr);
+        if($act=='edit'){
+            $cart->editnum($id,$num);
+            $data="数量修改成功！";
+            return $data;
+        }elseif($act=='del'){
+            $cart->delItem($id);
+            $data="商品成功从购物车中删除！";
+            return $data;
+        }
+        $price=$cart->getPrice();
+        $cart=$cart->all();
         
+        $this->assign('cart',$cart);
+        $this->assign('price',$price);
+        return $this->fetch();
+    }
+    public  function addtocart($id=null,$num=1) {
+        $pro=Db('pro')->where('id',$id)->find();
+        $cart=new Cart();
+        $cart->addItem($pro);
+        var_dump($cart->getPrice());
+        
+    }
+    
+    
+    
+    public  function test($info="手机",$id='1') {
+        $cart=new Cart();
+        return $cart->getPrice();
     }
 }

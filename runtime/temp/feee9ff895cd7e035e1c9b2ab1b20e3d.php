@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"F:\Demo\tpshop\public/../application/index\view\index\lists.html";i:1505272354;s:68:"F:\Demo\tpshop\public/../application/index\view\common\template.html";i:1505272163;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"F:\Demo\tpshop\public/../application/index\view\index\lists.html";i:1505284583;s:68:"F:\Demo\tpshop\public/../application/index\view\common\template.html";i:1505272163;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -184,15 +184,16 @@
     <!--产品列表样式-->
     <div id="Sorted" class="">
         <div class="Sorted">
-            <div class="Sorted_style"> 
-	            <a href="#" >综合<i class="iconfont icon-fold"></i></a>  
+            <div class="Sorted_style" id="order"> 
+	            <a href="#" class="on">综合<i class="iconfont icon-fold"></i></a>  
 	            <?php if((isset($order))): ?>
-	            <a href="/index/index/lists/id/<?php echo $id; ?>/order/<?php echo $order; ?>" class="on">价格<i class="iconfont icon-fold"></i></a>
+	            <a href="/index/index/lists/id/<?php echo $id; ?>/order/<?php echo $order; ?>">价格<i class="iconfont icon-fold"></i></a>
 	            <?php else: ?>
 	            <a href="/index/index/lists/id/<?php echo $id; ?>/order/asc">价格<i class="iconfont icon-fold"></i></a>
 	            <?php endif; ?>
 	            <a href="/index/index/lists/id/<?php echo $id; ?>/sales/desc">销量<i class="iconfont icon-fold"></i></a> 
             </div>
+            
             <!--产品搜索-->
             <div class="products_search">
                 <input name="" type="text" class="search_text" value="请输入你要搜索的产品" onfocus="this.value=''" onblur="if(!value){value=defaultValue;}">
