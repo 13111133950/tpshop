@@ -24,10 +24,10 @@
     <div class="hd_top_manu clearfix">
 	  <ul class="clearfix">
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="/">首页</a></li> 
-	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">我的小充</a> </li>
+	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">个人中心</a> </li>
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">消息中心</a></li>
-       <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">商品分类</a></li>
-        <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的购物车<b>(23)</b></a></li>	
+       <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的收藏夹</a></li>
+        <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的购物车<b></b></a></li>	
 	  </ul>
 	</div>
     {else/}
@@ -39,7 +39,7 @@
     </div>
   </div>
   <div id="header"  class="header page_style">
-  <div class="logo"><a href="index.html"><img src="__STATIC__/images/logo.png" /></a></div>
+  <div class="logo"><a href="/"><img src="__STATIC__/images/logo1.png" /></a></div>
   <!--结束图层-->
   <div class="Search">
         <div class="search_list">
@@ -55,26 +55,45 @@
         <div class="clear hotword">热门搜索词：香醋&nbsp;&nbsp;&nbsp;茶叶&nbsp;&nbsp;&nbsp;草莓&nbsp;&nbsp;&nbsp;葡萄&nbsp;&nbsp;&nbsp;菜油</div>
 </div>
  <!--购物车样式-->
+ {if(!isset($_SESSION['num']))}
  <div class="hd_Shopping_list" id="Shopping_list">
-   <div class="s_cart"><a href="#">我的购物车</a> <i class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">0</i></div>
+   <div class="s_cart"><a href="/index/index/cart">我的购物车</a> <i class="ci-right">&gt;</i>
+   <i class="ci-count" id="shopping-amount">0</i></div>
    <div class="dorpdown-layer">
     <div class="spacer"></div>
-	 <!--<div class="prompt"></div><div class="nogoods"><b></b>购物车中还没有商品，赶紧选购吧！</div>-->
-	 <ul class="p_s_list">	   
-		<li>
-		    <div class="img"><img src="__STATIC__/images/tianma.png"></div>
-		    <div class="content"><p class="name"><a href="#">产品名称</a></p><p>颜色分类:紫花8255尺码:XL</p></div>
-			<div class="Operations">
-			<p class="Price">￥55.00</p>
-			<p><a href="#">删除</a></p></div>
-		  </li>
-		</ul>		
-	 <div class="Shopping_style">
-	 <div class="p-total">共<b>1</b>件商品　共计<strong>￥ 515.00</strong></div>
-	  <a href="Shop_cart.html" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
-	 </div>	 
+	 <div class="prompt"></div><div class="nogoods"><b></b>购物车中还没有商品，赶紧选购吧！</div>
    </div>
  </div>
+ {else/}
+ <div class="hd_Shopping_list" id="Shopping_list">
+   <div class="s_cart"><a href="/index/index/cart">我的购物车</a> <i class="ci-right">&gt;</i>
+   <i class="ci-count" id="shopping-amount">{$_SESSION['num']}</i></div>
+   <div class="dorpdown-layer">
+    <div class="spacer"></div>
+	 {if($_SESSION['num']==0)}
+	 <div class="prompt"></div><div class="nogoods"><b></b>购物车中还没有商品，赶紧选购吧！</div>
+	 {else/}
+	 <ul class="p_s_list">	   
+		<?php $cart=$_SESSION['cart']; ?>
+		{foreach $cart as $carts}
+		<li>
+		    <div class="img"><img src="__STATIC__/image/{$carts.imgpath}"></div>
+		    <div class="content"><p class="name"><a href="#">{$carts.pname}</a></p><p>数量：{$carts.num}</p></div>
+			<div class="Operations">
+			<p class="Price">{$carts.price}</p>
+			<a href="javascript:delpro({$carts.id})">删除</a></div>
+		  </li>
+		 {/foreach}
+		</ul>		
+	 <div class="Shopping_style">
+	 <div class="p-total">共<b>{$_SESSION['num']}</b>件商品　共计<strong>￥{$_SESSION['price']}</strong></div>
+	  <a href="/index/index/cart" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
+	 </div>	
+	 {/if} 
+   </div>
+ </div>
+ {/if}
+ 
 </div>
 <!--菜单栏-->
 	<div class="Navigation" id="Navigation">
@@ -95,11 +114,12 @@
 <div class="fixedBox">
   <ul class="fixedBoxList">
       <li class="fixeBoxLi user"><a href="#"> <span class="fixeBoxSpan"></span> <strong>消息中心</strong></a> </li>
-    <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
+    <!-- <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
 		<p class="good_cart">9</p>
 			<span class="fixeBoxSpan"></span> <strong>购物车</strong>
 			<div class="cartBox">
-       		<div class="bjfff"></div><div class="message">购物车内暂无商品，赶紧选购吧</div>    </div></li>
+       		<div class="bjfff"></div><div class="message">
+       		</div>    </div></li> -->
     <li class="fixeBoxLi Service "> <span class="fixeBoxSpan"></span> <strong>客服</strong>
       <div class="ServiceBox">
         <div class="bjfffs"></div>
@@ -139,11 +159,8 @@
 <!--网站地图-->
 <div class="fri-link-bg clearfix">
     <div class="fri-link">
-        <div class="logo left margin-r20"><img src="__STATIC__/images/fo-logo.jpg" width="152" height="81" /></div>
-        <div class="left"><img src="__STATIC__/images/qd.jpg" width="90"  height="90" />
-            <p>扫描下载APP</p>
-        </div>
-       <div class="">
+        <div class="logo left margin-r20"><img src="__STATIC__/images/logo1.png"  /></div>
+        
     <dl>
 	 <dt>新手上路</dt>
 	 <dd><a href="#">售后流程</a></dd>
@@ -179,21 +196,11 @@
      <dd><a href="#">专题及活动</a></dd>
      <dd><a href="#">挑选保险产品</a> </dd>
      <dd><a href="#">常见问题 </a></dd>
-	</dl>
-     <dl>
-	 <dt>帮助中心</dt>
-	 <dd><a href="#">保险需求测试</a></dd>
-     <dd><a href="#">专题及活动</a></dd>
-     <dd><a href="#">挑选保险产品</a> </dd>
-     <dd><a href="#">常见问题 </a></dd>
-	</dl>
-     <dl>
-	 <dt>帮助中心</dt>
-	 <dd><a href="#">保险需求测试</a></dd>
-     <dd><a href="#">专题及活动</a></dd>
-     <dd><a href="#">挑选保险产品</a> </dd>
-     <dd><a href="#">常见问题 </a></dd>
-	</dl>	   
+	</dl>	
+	<div class="left"><img src="__STATIC__/images/qd.jpg" width="90"  height="90" />
+            <p>扫描下载APP</p>
+        </div>
+       <div class="">   
    </div>
     </div>
 </div>
@@ -201,18 +208,21 @@
 <!--网站页脚-->
 <div class="copyright">
     <div class="copyright-bg">
-        <div class="hotline">为生活充电在线 <span>招商热线：****-********</span> 客服热线：400-******</div>
-        <div class="hotline co-ph">
-            <p>版权所有Copyright ©***************</p>
-            <p>*ICP备***************号 不良信息举报</p>
-            <p>总机电话：****-*********/194/195/196 客服电话：4000****** 传 真：********
-                
-                <a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
+        <div class="hotline">
+        	<span>客服热线：400-815-8800</span>
+        	<span>版权所有Copyright ©2017 Tpshop.com. All Rights Reserved</span>
+        	  
         </div>
     </div>
 </div>
  <!--右侧菜单栏购物车样式-->
 <script type="text/javascript">
+function delpro(id){
+	$.post("/index/index/cart/act/del/id/"+id,{},function(data){
+		//alert(data.msg);
+		location.reload(); //页面刷新 或者history.go(0)  history.go(-1) --返回上一页 
+	})
+}
 function search(){
 	if(event.keyCode==13){
 		var info=document.getElementById("searchInfo").value;

@@ -87,7 +87,6 @@ class Index extends Controller
     
     public  function cart($act=null,$id=null,$num=null) {
         $cart=new Cart();
-        
         if($act=='edit'){
             $cart->editnum($id,$num);
             $data="数量修改成功！";
@@ -96,26 +95,20 @@ class Index extends Controller
             $cart->delItem($id);
             $data="商品成功从购物车中删除！";
             return $data;
+        }elseif($act=='add'){
+            $pro=Db('pro')->where('id',$id)->find();
+            $cart->addItem($pro,$num);
+            echo "<script>history.go(-1);</script>";
         }
-        $price=$cart->getPrice();
+        $cart->getPrice();
+        $cart->getNum();
         $cart=$cart->all();
-        
         $this->assign('cart',$cart);
-        $this->assign('price',$price);
         return $this->fetch();
     }
-    public  function addtocart($id=null,$num=1) {
-        $pro=Db('pro')->where('id',$id)->find();
-        $cart=new Cart();
-        $cart->addItem($pro);
-        var_dump($cart->getPrice());
-        
-    }
-    
-    
     
     public  function test($info="手机",$id='1') {
         $cart=new Cart();
-        return $cart->getPrice();
+        var_dump($cart->getCnt());
     }
 }

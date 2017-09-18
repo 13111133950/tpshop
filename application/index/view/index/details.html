@@ -83,9 +83,9 @@
             <div class="act_block margin-t5"><span>本商品可使用9999积分抵用￥9.99元</span></div>
             <div class="pro_detail_number margin-t30">
                 <div class="margin-r20 float-lt">数量</div>
-                <div class=""> <i class="jian"></i>
-                    <input type="text" value="1" class="float-lt choose_input"/>
-                    <i class="jia"></i> <span>&nbsp;件</span> <span>（库存{$pro.num}件）</span> </div>
+                <div class=""> <i class="jian" onclick="jian()"></i>
+                    <input type="text" value="1" id="number" class="float-lt choose_input"/>
+                    <i class="jia" onclick="jia()"></i> <span>&nbsp;件</span> <span>（库存{$pro.num}件）</span> </div>
                 <div class="clear"></div>
             </div>
             <div class="guige">
@@ -105,7 +105,7 @@
             <div class="pro_detail_btn margin-t30">
                 <ul>
                     <li class="pro_detail_shop"><a href="pay1.html">立即购买</a></li>
-                    <li class="pro_detail_add"><a href="#" onclick="ShowDiv('MyDiv','fade')">加入购物车</a></li>
+                    <li class="pro_detail_add"><a href="#" onclick="add({$pro.id})">加入购物车</a></li>
                 </ul>
             </div>
         </div>
@@ -320,6 +320,27 @@
 </div>
 </div>
 <script type="text/javascript">
+function add(id)
+{ 
+   var num =  document.getElementById("number").value; 
+   window.location="/index/index/cart/act/add/id/"+id+"/num/"+num;
+}
+function jia()
+{
+   var num = parseInt(document.getElementById("number").value);
+   if(num<100)
+   {
+      document.getElementById("number").value = ++num;
+   }
+}
+function jian()
+{
+   var num = parseInt(document.getElementById("number").value);
+   if(num>1)
+   {
+      document.getElementById("number").value = --num;
+   }
+}
 $(document).ready(function(){
 
 	$(".jqzoom").imagezoom();

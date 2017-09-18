@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:66:"F:\Demo\tpshop\public/../application/index\view\index\details.html";i:1504074772;s:68:"F:\Demo\tpshop\public/../application/index\view\common\template.html";i:1505272163;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:66:"F:\Demo\tpshop\public/../application/index\view\index\details.html";i:1505460728;s:68:"F:\Demo\tpshop\public/../application/index\view\common\template.html";i:1505465251;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -28,7 +28,7 @@
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">我的小充</a> </li>
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">消息中心</a></li>
        <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">商品分类</a></li>
-        <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的购物车<b>(23)</b></a></li>	
+        <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的购物车<b></b></a></li>	
 	  </ul>
 	</div>
     <?php else: ?>
@@ -56,26 +56,44 @@
         <div class="clear hotword">热门搜索词：香醋&nbsp;&nbsp;&nbsp;茶叶&nbsp;&nbsp;&nbsp;草莓&nbsp;&nbsp;&nbsp;葡萄&nbsp;&nbsp;&nbsp;菜油</div>
 </div>
  <!--购物车样式-->
+ <?php if((!isset($_SESSION['num']))): ?>
  <div class="hd_Shopping_list" id="Shopping_list">
-   <div class="s_cart"><a href="#">我的购物车</a> <i class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">0</i></div>
+   <div class="s_cart"><a href="/index/index/cart">我的购物车</a> <i class="ci-right">&gt;</i>
+   <i class="ci-count" id="shopping-amount">0</i></div>
    <div class="dorpdown-layer">
     <div class="spacer"></div>
-	 <!--<div class="prompt"></div><div class="nogoods"><b></b>购物车中还没有商品，赶紧选购吧！</div>-->
-	 <ul class="p_s_list">	   
-		<li>
-		    <div class="img"><img src="__STATIC__/images/tianma.png"></div>
-		    <div class="content"><p class="name"><a href="#">产品名称</a></p><p>颜色分类:紫花8255尺码:XL</p></div>
-			<div class="Operations">
-			<p class="Price">￥55.00</p>
-			<p><a href="#">删除</a></p></div>
-		  </li>
-		</ul>		
-	 <div class="Shopping_style">
-	 <div class="p-total">共<b>1</b>件商品　共计<strong>￥ 515.00</strong></div>
-	  <a href="Shop_cart.html" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
-	 </div>	 
+	 <div class="prompt"></div><div class="nogoods"><b></b>购物车中还没有商品，赶紧选购吧！</div>
    </div>
  </div>
+ <?php else: ?>
+ <div class="hd_Shopping_list" id="Shopping_list">
+   <div class="s_cart"><a href="/index/index/cart">我的购物车</a> <i class="ci-right">&gt;</i>
+   <i class="ci-count" id="shopping-amount"><?php echo $_SESSION['num']; ?></i></div>
+   <div class="dorpdown-layer">
+    <div class="spacer"></div>
+	 <?php if(($_SESSION['num']==0)): ?>
+	 <div class="prompt"></div><div class="nogoods"><b></b>购物车中还没有商品，赶紧选购吧！</div>
+	 <?php else: ?>
+	 <ul class="p_s_list">	   
+		<?php $cart=$_SESSION['cart']; foreach($cart as $carts): ?>
+		<li>
+		    <div class="img"><img src="__STATIC__/image/<?php echo $carts['imgpath']; ?>"></div>
+		    <div class="content"><p class="name"><a href="#"><?php echo $carts['pname']; ?></a></p><p>数量：<?php echo $carts['num']; ?></p></div>
+			<div class="Operations">
+			<p class="Price"><?php echo $carts['price']; ?></p>
+			<a href="javascript:delpro(<?php echo $carts['id']; ?>)">删除</a></div>
+		  </li>
+		 <?php endforeach; ?>
+		</ul>		
+	 <div class="Shopping_style">
+	 <div class="p-total">共<b><?php echo $_SESSION['num']; ?></b>件商品　共计<strong>￥<?php echo $_SESSION['price']; ?></strong></div>
+	  <a href="/index/index/cart" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
+	 </div>	
+	 <?php endif; ?> 
+   </div>
+ </div>
+ <?php endif; ?>
+ 
 </div>
 <!--菜单栏-->
 	<div class="Navigation" id="Navigation">
@@ -100,7 +118,19 @@
 		<p class="good_cart">9</p>
 			<span class="fixeBoxSpan"></span> <strong>购物车</strong>
 			<div class="cartBox">
-       		<div class="bjfff"></div><div class="message">购物车内暂无商品，赶紧选购吧</div>    </div></li>
+       		<div class="bjfff"></div><div class="message">
+       		<?php $cart=$_SESSION['cart']; ?>
+       		<ul class="p_s_list">	   
+				<?php foreach($cart as $carts): ?>
+				<li>
+				    <div class="img"><img src="__STATIC__/image/<?php echo $carts['imgpath']; ?>"></div>
+				    <div class="content"><p class="name"><a href="#"><?php echo $carts['pname']; ?></a></p><p>数量：<?php echo $carts['num']; ?></p></div>
+					<div class="Operations">
+					<p class="Price"><?php echo $carts['price']; ?></p>
+					<a href="javascript:delpro(<?php echo $carts['id']; ?>)">删除</a></div>
+				  </li>
+				 <?php endforeach; ?>
+			</ul>	</div>    </div></li>
     <li class="fixeBoxLi Service "> <span class="fixeBoxSpan"></span> <strong>客服</strong>
       <div class="ServiceBox">
         <div class="bjfffs"></div>
@@ -209,9 +239,9 @@
             <div class="act_block margin-t5"><span>本商品可使用9999积分抵用￥9.99元</span></div>
             <div class="pro_detail_number margin-t30">
                 <div class="margin-r20 float-lt">数量</div>
-                <div class=""> <i class="jian"></i>
-                    <input type="text" value="1" class="float-lt choose_input"/>
-                    <i class="jia"></i> <span>&nbsp;件</span> <span>（库存<?php echo $pro['num']; ?>件）</span> </div>
+                <div class=""> <i class="jian" onclick="jian()"></i>
+                    <input type="text" value="1" id="number" class="float-lt choose_input"/>
+                    <i class="jia" onclick="jia()"></i> <span>&nbsp;件</span> <span>（库存<?php echo $pro['num']; ?>件）</span> </div>
                 <div class="clear"></div>
             </div>
             <div class="guige">
@@ -231,7 +261,7 @@
             <div class="pro_detail_btn margin-t30">
                 <ul>
                     <li class="pro_detail_shop"><a href="pay1.html">立即购买</a></li>
-                    <li class="pro_detail_add"><a href="#" onclick="ShowDiv('MyDiv','fade')">加入购物车</a></li>
+                    <li class="pro_detail_add"><a href="#" onclick="add(<?php echo $pro['id']; ?>)">加入购物车</a></li>
                 </ul>
             </div>
         </div>
@@ -446,6 +476,27 @@
 </div>
 </div>
 <script type="text/javascript">
+function add(id)
+{ 
+   var num =  document.getElementById("number").value; 
+   window.location="/index/index/cart/act/add/id/"+id+"/num/"+num;
+}
+function jia()
+{
+   var num = parseInt(document.getElementById("number").value);
+   if(num<100)
+   {
+      document.getElementById("number").value = ++num;
+   }
+}
+function jian()
+{
+   var num = parseInt(document.getElementById("number").value);
+   if(num>1)
+   {
+      document.getElementById("number").value = --num;
+   }
+}
 $(document).ready(function(){
 
 	$(".jqzoom").imagezoom();
@@ -564,6 +615,12 @@ $(function(){
 </div>
  <!--右侧菜单栏购物车样式-->
 <script type="text/javascript">
+function delpro(id){
+	$.post("/index/index/cart/act/del/id/"+id,{},function(data){
+		//alert(data.msg);
+		location.reload(); //页面刷新 或者history.go(0)  history.go(-1) --返回上一页 
+	})
+}
 function search(){
 	if(event.keyCode==13){
 		var info=document.getElementById("searchInfo").value;
