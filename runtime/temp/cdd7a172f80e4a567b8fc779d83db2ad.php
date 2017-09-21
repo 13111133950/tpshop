@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"F:\Demo\tpshop\public/../application/admin\view\pro\listpro.html";i:1504056730;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"F:\Demo\tpshop\public/../application/admin\view\pro\listpro.html";i:1505704169;}*/ ?>
 <!--_meta 作为公共模版分离出去-->
 <!DOCTYPE HTML>
 <html>

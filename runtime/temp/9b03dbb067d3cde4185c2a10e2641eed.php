@@ -1,81 +1,61 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:63:"F:\Demo\tpshop\public/../application/index\view\index\test.html";i:1505282931;}*/ ?>
-<!DOCTYPE html>
-<html>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:63:"F:\Demo\tpshop\public/../application/index\view\index\test.html";i:1505701214;}*/ ?>
+<!doctype html>  
+<html>  
+<head>  
+    <title>购物车动画</title>  
+ <link rel="stylesheet" type="text/css" href="__STATIC__/test/styles.css">
+</head>  
+<body>  
+<div class="wrapper">
+	<span class="car"><i class="shopping-cart"></i></span>
+	<!-- items -->
+	<div class="items">
+		<!-- single item -->
+		<div class="item">
+			<img src="__STATIC__/test/droid-x.jpg" alt="item" />
+			 <h2>droid-x</h2>
 
-<head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title></title>
- <style>
-.hq_hy:hover, .hq_zsh:hover, .hq_hb:hover, .hq_jyyc:hover, .hq_byb:hover, .hq_lrcl:hover
-　　/*鼠标移上去变色（不点击）*/
-        {
-            color: #fff;
-            border-color: #b1b0b0;
-            background: #b1b0b0;
-            border: none;
-        }
-        
-        .start
-        {
-            cursor: pointer;
-        }
-
-        .end
-        {
-            cursor: pointer;
-            color: #fff;
-            background: #b1b0b0;
-            border: none;
-        }
-    </style>
-    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
-</head>
-
-<body>
-<table> 
-<tr>
-                <td>
-                    <input class="flag hq_hy" type="submit" onclick="dj(this);" value="行业" />
-                </td>
-                <td>
-                    <input class="flag hq_zsh" type="submit" onclick="dj(this);" value="指数" />
-                </td>
-                <td>
-                    <input class="flag hq_hb" type="submit" onclick="dj(this);" value="货币" />
-                </td>
-                <td>
-                    <input class="flag hq_jyyc" type="submit" onclick="dj(this);" value="交易异常" />
-                </td>
-                <td>
-                    <input class="flag hq_byb" type="submit" onclick="dj(this);" value="比一比" />
-                </td>
-                <td>
-                    <input class="flag hq_lrcl" type="submit" style="" onclick="dj(this);" value="ETF两融策略" />
-                </td>
-            </tr>
-        </table>
-   <script type="text/javascript">
-    $(function () {
-    //加载事件
-        var collection = $(".flag");
-        $.each(collection, function () {
-            $(this).addClass("start");
-        });
-    });
-    //单击事件
-    function dj(dom) {
-        var collection = $(".flag");
-        $.each(collection, function () {
-            $(this).removeClass("end");
-            $(this).addClass("start");
-        });
-        $(dom).removeClass("start");
-        $(dom).addClass("end");
-    }
+			<p>Price: <em>$255</em>
+			</p>
+			<button class="add-to-cart" type="button">Add to cart</button>
+		</div>
+		<!--/ single item -->
+	</div>
+	<!--/ items -->
+</div>
+<script type="text/javascript" src="__STATIC__/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src='__STATIC__/js/jquery-ui.min.js'></script>
+<script type="text/javascript">
+$('.add-to-cart').on('click', function () {
+	var cart = $('.shopping-cart');
+	var imgtodrag = $(this).parent('.item').find('img').eq(0);
+	if (imgtodrag) {
+		var imgclone = imgtodrag.clone().offset({
+			top: imgtodrag.offset().top,
+			left: imgtodrag.offset().left
+		}).css({
+			'opacity': '0.5',
+			'position': 'absolute',
+			'height': '150px',
+			'width': '150px',
+			'z-index': '100'
+		}).appendTo($('body')).animate({
+			'top': cart.offset().top + 10,
+			'left': cart.offset().left + 10,
+			'width': 75,
+			'height': 75
+		}, 1000, 'easeInOutExpo');
+		setTimeout(function () {
+			cart.effect('shake', { times: 2 }, 200);
+		}, 1500);
+		imgclone.animate({
+			'width': 0,
+			'height': 0
+		}, function () {
+			$(this).detach();
+		});
+	}
+});
 </script>
-
-
-
-</body>
-
-</html>
+</body>  
+</html>  

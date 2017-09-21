@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"F:\Demo\tpshop\public/../application/index\view\index\lists.html";i:1505284583;s:68:"F:\Demo\tpshop\public/../application/index\view\common\template.html";i:1505465251;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"F:\Demo\tpshop\public/../application/index\view\index\lists.html";i:1505698759;s:68:"F:\Demo\tpshop\public/../application/index\view\common\template.html";i:1505705745;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -25,9 +25,9 @@
     <div class="hd_top_manu clearfix">
 	  <ul class="clearfix">
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="/">首页</a></li> 
-	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">我的小充</a> </li>
+	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">个人中心</a> </li>
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">消息中心</a></li>
-       <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">商品分类</a></li>
+       <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的收藏夹</a></li>
         <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的购物车<b></b></a></li>	
 	  </ul>
 	</div>
@@ -40,7 +40,7 @@
     </div>
   </div>
   <div id="header"  class="header page_style">
-  <div class="logo"><a href="index.html"><img src="__STATIC__/images/logo.png" /></a></div>
+  <div class="logo"><a href="/"><img src="__STATIC__/images/logo1.png" /></a></div>
   <!--结束图层-->
   <div class="Search">
         <div class="search_list">
@@ -114,23 +114,12 @@
 <div class="fixedBox">
   <ul class="fixedBoxList">
       <li class="fixeBoxLi user"><a href="#"> <span class="fixeBoxSpan"></span> <strong>消息中心</strong></a> </li>
-    <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
+    <!-- <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
 		<p class="good_cart">9</p>
 			<span class="fixeBoxSpan"></span> <strong>购物车</strong>
 			<div class="cartBox">
        		<div class="bjfff"></div><div class="message">
-       		<?php $cart=$_SESSION['cart']; ?>
-       		<ul class="p_s_list">	   
-				<?php foreach($cart as $carts): ?>
-				<li>
-				    <div class="img"><img src="__STATIC__/image/<?php echo $carts['imgpath']; ?>"></div>
-				    <div class="content"><p class="name"><a href="#"><?php echo $carts['pname']; ?></a></p><p>数量：<?php echo $carts['num']; ?></p></div>
-					<div class="Operations">
-					<p class="Price"><?php echo $carts['price']; ?></p>
-					<a href="javascript:delpro(<?php echo $carts['id']; ?>)">删除</a></div>
-				  </li>
-				 <?php endforeach; ?>
-			</ul>	</div>    </div></li>
+       		</div>    </div></li> -->
     <li class="fixeBoxLi Service "> <span class="fixeBoxSpan"></span> <strong>客服</strong>
       <div class="ServiceBox">
         <div class="bjfffs"></div>
@@ -238,8 +227,8 @@
             <?php foreach($data as $v): ?>
             <li class="gl-item"> <em class="icon_special tejia"></em>
                 <div class="Borders">
-                    <div class="img"><a href="/index/index/details?id=<?php echo $v['id']; ?>"><img src="__STATIC__/image/<?php echo $v['imgpath']; ?>" style="width:220px;height:220px"></a></div>
-                    <div class="name"><a href="/index/index/details?id=<?php echo $v['id']; ?>"><strong style="color:#ff7200;">
+                    <div class="img"><a href="/index/index/details?id=<?php echo $v['id']; ?>" target="_blank"><img src="__STATIC__/image/<?php echo $v['imgpath']; ?>" style="width:220px;height:220px"></a></div>
+                    <div class="name"><a href="/index/index/details?id=<?php echo $v['id']; ?>" target="_blank"><strong style="color:#ff7200;">
                     		   【<?php switch($v['attributes']): case "1": ?>推荐 <?php break; case "2": ?>新上<?php break; case "3": ?>热卖<?php break; case "4": ?>促销<?php break; case "5": ?>包邮<?php break; case "6": ?>限时卖<?php break; case "7": ?>不参与会员折扣<?php break; endswitch; ?>】</strong><?php echo $v['pname']; ?></a></div>
                     <div class="Shop_name"><a href="#">××××旗舰店</a></div>
                     <div class="yushou">
@@ -293,11 +282,8 @@
 <!--网站地图-->
 <div class="fri-link-bg clearfix">
     <div class="fri-link">
-        <div class="logo left margin-r20"><img src="__STATIC__/images/fo-logo.jpg" width="152" height="81" /></div>
-        <div class="left"><img src="__STATIC__/images/qd.jpg" width="90"  height="90" />
-            <p>扫描下载APP</p>
-        </div>
-       <div class="">
+        <div class="logo left margin-r20"><img src="__STATIC__/images/logo1.png"  /></div>
+        
     <dl>
 	 <dt>新手上路</dt>
 	 <dd><a href="#">售后流程</a></dd>
@@ -333,21 +319,11 @@
      <dd><a href="#">专题及活动</a></dd>
      <dd><a href="#">挑选保险产品</a> </dd>
      <dd><a href="#">常见问题 </a></dd>
-	</dl>
-     <dl>
-	 <dt>帮助中心</dt>
-	 <dd><a href="#">保险需求测试</a></dd>
-     <dd><a href="#">专题及活动</a></dd>
-     <dd><a href="#">挑选保险产品</a> </dd>
-     <dd><a href="#">常见问题 </a></dd>
-	</dl>
-     <dl>
-	 <dt>帮助中心</dt>
-	 <dd><a href="#">保险需求测试</a></dd>
-     <dd><a href="#">专题及活动</a></dd>
-     <dd><a href="#">挑选保险产品</a> </dd>
-     <dd><a href="#">常见问题 </a></dd>
-	</dl>	   
+	</dl>	
+	<div class="left"><img src="__STATIC__/images/qd.jpg" width="90"  height="90" />
+            <p>扫描下载APP</p>
+        </div>
+       <div class="">   
    </div>
     </div>
 </div>
@@ -355,13 +331,10 @@
 <!--网站页脚-->
 <div class="copyright">
     <div class="copyright-bg">
-        <div class="hotline">为生活充电在线 <span>招商热线：****-********</span> 客服热线：400-******</div>
-        <div class="hotline co-ph">
-            <p>版权所有Copyright ©***************</p>
-            <p>*ICP备***************号 不良信息举报</p>
-            <p>总机电话：****-*********/194/195/196 客服电话：4000****** 传 真：********
-                
-                <a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
+        <div class="hotline">
+        	<span>客服热线：400-815-8800</span>
+        	<span>版权所有Copyright ©2017 Tpshop.com. All Rights Reserved</span>
+        	  
         </div>
     </div>
 </div>

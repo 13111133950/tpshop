@@ -106,9 +106,17 @@ class Index extends Controller
         $this->assign('cart',$cart);
         return $this->fetch();
     }
-    
+    public  function buy() {
+        if(!session('user')){
+            return $this->error('您还没登陆，请先登陆','/index/user/login');
+        }
+        //return $this->fetch();
+    }
     public  function test($info="手机",$id='1') {
-        $cart=new Cart();
-        var_dump($cart->getCnt());
+        if(session('user')){
+            var_dump(session('user'));
+        }
+        
+        //return $this->fetch();
     }
 }

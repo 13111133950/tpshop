@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"F:\Demo\tpshop\public/../application/index\view\index\index.html";i:1505205850;s:68:"F:\Demo\tpshop\public/../application/index\view\common\template.html";i:1505467298;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"F:\Demo\tpshop\public/../application/index\view\index\index.html";i:1505785719;s:68:"F:\Demo\tpshop\public/../application/index\view\common\template.html";i:1505786038;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -45,8 +45,8 @@
   <div class="Search">
         <div class="search_list">
             <ul>
-                <li class="current"><a href="#">产品</a></li>
-                <li><a href="#">信息</a></li>
+                <li ><a href="#">产品</a></li>
+                <li class="current"><a href="#">信息</a></li>
             </ul>
         </div>
         <div class="clear search_cur">
@@ -166,8 +166,8 @@
 					<li><a href="#" target="_blank"><div style="background:url(__STATIC__/AD/ad-1.jpg) no-repeat; background-position:center; width:100%; height:450px;"></div></a></li>
 					<li><a href="#" target="_blank"><div style="background:url(__STATIC__/AD/ad-2.jpg) no-repeat; background-position:center ; width:100%; height:450px;"></div></a></li>
 					<li><a href="#" target="_blank"><div style="background:url(__STATIC__/AD/ad-3.jpg) no-repeat rgb(226, 155, 197); background-position:center; width:100%; height:475px;"></div></a></li>
-                    <li><a href="#" target="_blank"><div style="background:url(__STATIC__/AD/ad-7.jpg) no-repeat #f7ddea; background-position:center; width:100%; height:450px;"></div></a></li>
-                    <li><a href="#" target="_blank"><div style="background:url(__STATIC__/AD/ad-6.jpg) no-repeat  #F60; background-position:center; width:100%; height:450px;"></div></a></li>
+                    <li><a href="#" target="_blank"><div style="background:url(__STATIC__/AD/ad-1.jpg) no-repeat #f7ddea; background-position:center; width:100%; height:450px;"></div></a></li>
+                    <li><a href="#" target="_blank"><div style="background:url(__STATIC__/AD/ad-2.jpg) no-repeat  #F60; background-position:center; width:100%; height:450px;"></div></a></li>
 				</ul>
 			</div>
 			<!-- 下面是前/后按钮-->

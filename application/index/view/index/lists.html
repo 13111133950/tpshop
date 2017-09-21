@@ -72,8 +72,8 @@
             {foreach $data as $v}
             <li class="gl-item"> <em class="icon_special tejia"></em>
                 <div class="Borders">
-                    <div class="img"><a href="/index/index/details?id={$v.id}"><img src="__STATIC__/image/{$v.imgpath}" style="width:220px;height:220px"></a></div>
-                    <div class="name"><a href="/index/index/details?id={$v.id}"><strong style="color:#ff7200;">
+                    <div class="img"><a href="/index/index/details?id={$v.id}" target="_blank"><img src="__STATIC__/image/{$v.imgpath}" style="width:220px;height:220px"></a></div>
+                    <div class="name"><a href="/index/index/details?id={$v.id}" target="_blank"><strong style="color:#ff7200;">
                     		   【{switch name="$v.attributes" }
 								    {case value="1"}推荐 {/case}
 								    {case value="2"}新上{/case}

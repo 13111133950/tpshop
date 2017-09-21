@@ -12,8 +12,24 @@ class Pro extends Common
     {
         if(isset($_GET['id'])){
             $id=$_GET['id'];
-            $pro=Db::table('cate')->alias('c')->join('pro p','p.cid = c.id')->where('cid',$id)->select();
-            
+            $data=Db('cate')->where('id',$id)->find();
+            $level=$data['level'];
+            if($level==3){
+                $pro=Db::table('cate')->alias('c')->join('pro p','p.cid = c.id')->where('cid',$id)->select();
+            }elseif($level==2){
+                $ccate=Db('cate')->where('pid',$id)->field('id')->select();
+                $ids = array_column($ccate, 'id');
+                $ids[]=(int)$id;
+                $pro=Db::table('cate')->alias('c')->join('pro p','p.cid = c.id')->where('cid','in',$ids)->select();
+            }elseif($level==1){
+                $ccate=Db('cate')->where('pid',$id)->field('id')->select();
+                $ids = array_column($ccate, 'id');
+                $cccate=Db('cate')->where('pid','in',$ids)->field('id')->select();
+                $ids2=array_column($cccate, 'id');
+                $ids=array_merge($ids,$ids2);
+                $ids[]=(int)$id;
+                $pro=Db::table('cate')->alias('c')->join('pro p','p.cid = c.id')->where('cid','in',$ids)->select();
+            }
         }else{
             $pro=Db::table('cate')->alias('c')->join('pro p','p.cid = c.id')->paginate(5);
             $page = $pro->render();

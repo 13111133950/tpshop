@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:63:"F:\Demo\tpshop\public/../application/index\view\index\cart.html";i:1505461008;s:68:"F:\Demo\tpshop\public/../application/index\view\common\template.html";i:1505467298;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:63:"F:\Demo\tpshop\public/../application/index\view\index\cart.html";i:1505719879;s:68:"F:\Demo\tpshop\public/../application/index\view\common\template.html";i:1505705745;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -416,7 +416,7 @@
                                     </div>
                 
                                     <div class="col col-2"><?php echo $carts['price']; ?></div>
-                                    <div class="col col-3"><input type="number" id="num" value="<?php echo $carts['num']; ?>" min="1" max="100" onchange="editnum(<?php echo $carts['id']; ?>)"></div>
+                                    <div class="col col-3"><input type="number" id="num" value="<?php echo $carts['num']; ?>" min="1" max="100" onchange="editnum(<?php echo $carts['id']; ?>,this.value)"></div>
                                     <div class="col col-4"><?php echo $carts['num']*$carts['price']; ?>元</div>
                                     <div class="col col-5"><a href="javascript:delpro(<?php echo $carts['id']; ?>)"><img src="__STATIC__/images/close2.png"></img></a></div>
                                 </div>
@@ -486,8 +486,9 @@
                 <input type="hidden" id="couponValue" name="Checkout[couponsValue]">
                 <div class="checkout-confirm">
                     
-                     <a href="#" class="btn btn-lineDakeLight btn-back-cart">返回购物车</a>
-                     <input type="submit" class="btn btn-primary" value="立即下单" id="checkoutToPay" />
+                     <a href="#" class="btn btn-lineDakeLight btn-back-cart">返回购物</a>
+                     <a href="/index/index/buy" class="btn btn-primary" id="checkoutToPay">立即下单</a>
+                     
                                      </div>
             </div>
         </div>
@@ -568,12 +569,11 @@
 <!-- 保险弹窗 -->
 <!-- 保险弹窗 -->
 <script type="text/javascript">
-function editnum(id){
-	var num=document.getElementById("num").value;
+function editnum(id,num){
 	$.post("/index/index/cart/act/edit/id/"+id+"/num/"+num,{},function(data){
-		//alert(data.msg);
-		location.reload(); //页面刷新 或者history.go(0)  history.go(-1) --返回上一页 
-	})
+			//alert(data.msg);
+			location.reload(); //页面刷新 或者history.go(0)  history.go(-1) --返回上一页 
+		})
 }
 function delpro(id){
 	$.post("/index/index/cart/act/del/id/"+id,{},function(data){
